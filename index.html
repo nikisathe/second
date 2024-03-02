@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Data</title>
+</head>
+<body>
+  <h1>College Data</h1>
+  <form id="collegeForm">
+    <label for="collegeId">Enter College ID:</label>
+    <input type="text" id="collegeId" name="collegeId">
+    <button type="button" onclick="fetchCollegeData()">Submit</button> 
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    alert( "Hello World!" )
+    function fetchCollegeData() {
+      const collegeId = document.getElementById('collegeId').value;
+
+      fetch(`/api/college/${collegeId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('College ID not found')
+          }
+          return response.json()
+        })
+        .then(data => {
+          const resultDiv = document.getElementById('result')
+          resultDiv.innerHTML = `College ID: ${data.college_id}<br>
+           Name: ${data.college_name}, <br>
+           Location: ${data.college_location}`
+
+          
+          setTimeout(() => {
+            window.location.href = '/nextpage.html';
+          }, 1000);
+        })
+        .catch(error => {
+          const resultDiv = document.getElementById('result')
+          resultDiv.textContent = error.message;
+        })
+    }
+  </script>
+</body>
+</html>
