@@ -21,9 +21,9 @@
 
 #### 2.Download zip file from the repository 
 
-extract it in your desired directory 
+ 1.extract it in your desired directory 
 
- run npm install inside the root  directory before running the code.
+ 2.run npm install inside the root  directory before running the code.
 
 
 
